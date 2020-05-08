@@ -1,13 +1,14 @@
 {
-    "manifest_version": 2,
-    "name": "GmailJS Node Boilerplate Extension",
-    "short_name": "gmailjsnode",
-    "version": "1.0",
-    "author": "Jostein Kjønigsen <jostein@kjonigsen.net>",
-
-    "description": "A minimal extension which demonstrates how to create a extension with Gmail.JS and NodeJS-based bundling.",
-
-    "content_scripts": [
+  "name": "Gmail DomainTools RiskScorer",
+  "version": "1.0",
+  "manifest_version": 2,
+  "description": "Gmail DomainTools RiskScorer Extension",
+  "permissions": [
+    "identity",
+    "*://*.google.com/*",
+    "*://*.domaintools.com/*"
+  ],
+  "content_scripts": [
         {
             "matches": [ "*://mail.google.com/*" ],
             "js": [
@@ -21,7 +22,11 @@
         "dist/extension.js"
     ],
 
-    "permissions": [
-        "https://*/*"
+  "content_security_policy": "script-src https://*.google.com 'unsafe-eval'; object-src 'self'",
+  "oauth2": {
+    "client_id": "654726948639-b3obqptvlrurqt9m3k983lss3rddgpmv.apps.googleusercontent.com",
+    "scopes": [
+      "https://www.googleapis.com/auth/gmail.modify"
     ]
+  }
 }
